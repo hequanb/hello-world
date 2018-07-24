@@ -1,0 +1,48 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+
+<mapper namespace="cn.hqb.pets.dao.mapper.order.TOrderItemMapper">
+	<resultMap id="tOrderItemResultMap" type="tOrderItem">
+		<id column="id" property="id" jdbcType="BIGINT"/>
+		<result column="item_id" property="itemId" jdbcType="BIGINT"/>
+		<result column="order_id" property="orderId" jdbcType="BIGINT"/>
+		<result column="count" property="count" jdbcType="BIGINT"/>
+		<result column="price" property="price" jdbcType="DECIMAL"/>
+		<result column="sub_total" property="subTotal" jdbcType="DECIMAL"/>
+		<result column="title" property="title" jdbcType="VARCHAR"/>
+		<result column="image" property="image" jdbcType="VARCHAR"/>
+	</resultMap>
+	
+	<sql id="BASE_COLUMN">
+		id, item_id, order_id, count, price, sub_total, title, image
+	</sql>
+
+	<insert id="insertOrderItemBatch" parameterType="tOrderItem">
+		insert into t_order_item ( item_id, order_id, count, price, sub_total, title, image)
+		values
+			<foreach collection="list" item="item" separator=",">
+				(
+					#{item.itemId, jdbcType = BIGINT},
+					#{item.orderId, jdbcType = BIGINT},
+					#{item.count, jdbcType = BIGINT},
+					#{item.price, jdbcType = DECIMAL},
+					#{item.subTotal, jdbcType = DECIMAL},
+					#{item.title, jdbcType = VARCHAR},
+					#{item.image, jdbcType = VARCHAR}
+				)
+			</foreach>
+	</insert>
+	
+	<select id="getOrderItemByOrderId" resultMap="tOrderItemResultMap">
+		select
+			<include refid="BASE_COLUMN"></include>
+		from 
+			t_order_item
+		<where>
+			<if test="orderId != null">
+				order_id = #{orderId, jdbcType = BIGINT}
+			</if>
+		</where>
+	</select>
+	
+</mapper>

@@ -1,0 +1,109 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+
+<mapper namespace="cn.hqb.pets.dao.mapper.shopcart.TShopcartItemMapper">
+	<resultMap id="baseResultMap" type="tShopcartItem">
+		<id column="id" property="id" jdbcType="BIGINT"/>
+		<result column="cart_id" property="cartId" jdbcType="BIGINT"/>
+		<result column="item_id" property="itemId" jdbcType="BIGINT"/>
+		<result column="count" property="count" jdbcType="BIGINT"/>
+		<result column="status" property="status" jdbcType="INTEGER"/>
+		<result column="created" property="created" jdbcType="TIMESTAMP"/>
+		<result column="updated" property="updated" jdbcType="TIMESTAMP"/>
+	</resultMap>
+	
+	<resultMap id="tShopcartItemResultMap" type="tShopcartItem" >
+		<id column="id" property="id" jdbcType="BIGINT"/>
+		<result column="cart_id" property="cartId" jdbcType="BIGINT"/>
+		<result column="item_id" property="itemId" jdbcType="BIGINT"/>
+		<result column="count" property="count" jdbcType="BIGINT"/>
+		<result column="status" property="status" jdbcType="INTEGER"/>
+		<result column="created" property="created" jdbcType="TIMESTAMP"/>
+		<result column="updated" property="updated" jdbcType="TIMESTAMP"/>
+		<association property="item" javaType="cn.hqb.pets.pojo.item.TItem">
+			<result property="title" column="title" jdbcType="VARCHAR"/>
+			<result property="price" column="price" jdbcType="DECIMAL"/>
+			<result property="standard" column="standard" jdbcType="VARCHAR"/>
+		</association>
+	</resultMap>
+
+	<insert id="insertItem" parameterType="tShopcartItem" >
+		insert into t_shopcart_item
+		<trim prefix="(" suffix=")" suffixOverrides="," >
+			<if test="cartId != null" >
+				cart_id,
+			</if>
+			<if test="itemId != null" >
+				item_id,
+			</if>
+			<if test="count != null" >
+				count,
+			</if>
+			<if test="status != null" >
+				status,
+			</if>
+			created,
+			updated
+		</trim>
+		<trim prefix="values (" suffix=")" suffixOverrides="," >
+			<if test="cartId != null" >
+			  #{cartId, jdbcType=BIGINT},
+			</if>
+			<if test="itemId != null" >
+			  #{itemId, jdbcType=BIGINT},
+			</if>
+			<if test="count != null" >
+			  #{count, jdbcType=BIGINT},
+			</if>
+			<if test="status != null" >
+			  #{status, jdbcType=INTEGER},
+			</if>
+			SYSDATE(),
+			SYSDATE()
+		</trim>
+	</insert>
+	
+	<update id="updateShopcartItem" parameterType="tShopcartItem">
+		update t_shopcart_item
+		<set>
+			<if test="cartId != null">
+				cart_id = #{cartId,jdbcType = BIGINT},
+			</if>
+			<if test="itemId != null">
+				item_id = #{itemId,jdbcType = BIGINT},
+			</if>
+			<if test="count != null">
+				count = #{count,jdbcType = BIGINT},
+			</if>
+			<if test="status != null">
+				status = #{status,jdbcType = TINYINT},
+			</if>
+				updated = SYSDATE()
+		</set>
+		where 
+			id = #{id,jdbcType = BIGINT}
+	</update>
+	
+	<update id="deleteShopcartItem" parameterType="java.lang.Long">
+		update t_shopcart_item
+		<set>
+			status = 0,
+			updated = SYSDATE()
+		</set>
+		where 
+			id = #{id,jdbcType = BIGINT}
+	</update>
+	
+	<update id="deleteShopcartItemBatch" parameterType="java.util.List">
+		update t_shopcart_item
+		<set>
+			status = 0,
+			updated = SYSDATE()
+		</set>
+		where id in
+		<foreach collection="list" index="index" item="id" separator="," open="(" close=")">
+	        #{id, jdbcType = BIGINT}
+	    </foreach>
+	</update>
+	
+</mapper>

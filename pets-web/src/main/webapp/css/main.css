@@ -1,0 +1,335 @@
+.updown-35{
+	margin-top: 35px;
+}
+
+.up-70{
+	margin-top: 70px;
+}
+
+.margin-20{
+	margin: 20px;
+}
+
+.up-23{
+	margin-top: 23px;
+}
+
+.down-10{
+	margin-bottom: 10px;
+}
+
+.down-30{
+	margin-bottom: 30px;
+}
+
+
+/*缩虐图*/
+.nail-a{
+	display: inline-block;
+	vertical-align: middle;
+	margin-left: 28px;
+}
+.nail-img{
+	vertical-align: bottom;
+	width: 240px;
+	height: 240px;
+}
+.nail-title{
+	text-overflow: ellipsis;
+    white-space: nowrap;
+    overflow: hidden;
+    width:240px;
+    text-align: center;
+}
+.nail-a2{
+	display: inline-block;
+	vertical-align: middle;
+}
+.nail-img2{
+	vertical-align: bottom;
+	width: 176px;
+	height: 150px;
+}
+.nail-title2{
+	text-overflow: ellipsis;
+    white-space: nowrap;
+    overflow: hidden;
+    width:150px;
+    text-align: center;
+}
+.nail-text-div{
+	background: #efefef;
+	height: 37px;
+	vertical-align: middle;
+	line-height: 34px;
+	width: 180px; 
+	text-align: center;
+}
+
+
+/*------------------------------------------*/
+.itemdetail-img{
+    display: block;
+    margin: 0 auto;
+    vertical-align: middle;
+    text-align: center;
+    margin-top: 0px;
+    width: 400px;
+    height: 400px;
+}
+.itemdetail-img-div{
+	border: 1px solid #b7b2b2;
+	width: 400px;
+	height: 400px;
+}
+.itemdetail-title{
+    padding-bottom: .2em;
+    line-height: 1;
+    font-size: 23px;
+    font-weight: 700;
+    color: #000;
+}
+.itemdetail-param-title{
+    color: #999;
+    font-size: 17px;
+    text-align: left;
+    float: left;
+    width: 120px;
+    margin: 0 0 0 8px;
+}
+.itemdetail-standard-value{
+    color: #333;
+    margin-left: 70px;
+    font-family: Arial;
+    font-size: 18px;
+}
+.itemdetail-param-em{
+	vertical-align: middle;
+    color: #FF0036;
+    font-size: 21px;
+    font-family: Arial;
+    display: inline-block;
+    -webkit-font-smoothing: antialiased;
+    margin-right:5px;
+}
+.itemdetail-price-value{
+    vertical-align: middle;
+    font-size: 30px;
+    color: #FF0036;
+    font-weight: bolder;
+    font-family: Arial;
+    -webkit-font-smoothing: antialiased;
+}
+.itemdetail-btn-word{
+	font: 16px "Microsoft YaHei";
+    cursor: pointer;
+    margin-right: 10px;
+    border: none;
+}
+.itemdetail-btn-buycart-word{
+	font: 16px "Microsoft YaHei";
+    cursor: pointer;
+    margin-right: 10px;
+    border: 1px solid #ed5530;
+    color: #ed5530;
+    background-color: #fdf2ec;
+}
+.itemdetail-btn-position{
+    position: relative;
+    top: 50px;
+}
+.itemdetail-product-info-text{
+    padding: 10px 0px;
+    margin-left: 60px;
+    margin-right: 20px;
+    margin-bottom: 20px;
+    font-weight: bold;
+    border-bottom: solid 2px #000;
+    font-size: 25px;
+    font-family: "Microsoft Yahei";
+}
+.itemdetail-product-info{
+	width: 300px;
+    margin-left: 90px;
+    margin-right: 20px;
+}
+.itemdetail-product-p{
+	margin-bottom:5px;
+    border-bottom: solid 1px #999999;
+    color: #666;
+    line-height: 24px;
+    font-family: "Microsoft JhengHei UI";
+    overflow: hidden;
+}
+.itemdetail-product-title{
+	margin-bottom:5px;
+	color: #fe7247;
+    line-height: 24px;
+    font-family: "Microsoft JhengHei UI";
+	font-size: 20px;
+}
+.itemdetail-product-value{
+	margin-bottom:5px;
+	color: #666;
+    line-height: 24px;
+    font-family: "Microsoft JhengHei UI";
+	font-size: 20px;
+}
+.itemdetail-product-sellPoint{
+	margin-top: 50px;
+	background: #fff4e3;
+	color: #666;
+    padding: 10px 30px;
+    font-size: 18px;
+    font-family: "Microsoft JhengHei UI";
+    line-height: 24px;
+    margin-left: 90px;
+    margin-right: 20px;
+}
+.shopcart-table-img{
+	height:60px;
+	width:60px;
+}
+.shopcart-span-totalcount{
+	color: red;
+}
+.shopcart-span-totalprice{
+	font-size: 20px;
+    color: #e53;
+}
+.head-title-div{
+	border-bottom: solid 3px #e53;
+	margin-bottom: -9px;
+}
+.head-title-p{
+    font-size: 20px;
+    padding-bottom: 10px;
+    color: #333;
+    font-family: "Microsoft YaHei";
+}
+.order-address-body{
+	background: #ffffff;
+    margin-top: 11px;
+    margin-bottom: 11px;
+}
+.order-detail-a{
+	color: #0088dd;
+	margin-top: 5px;
+	margin-left: 30px;
+	font-size: 17px;
+	cursor: pointer;
+}
+.none-show{
+	display: none;
+}
+.block-show{
+	display: block;
+}
+.order-pay-face-div{
+    margin-left: 100px;
+    margin-right: 100px;
+}
+.order-pay-face-p{
+	font-size: 22px;
+    color: #333;
+    font-family: "Microsoft YaHei";
+}
+.order-pay-face-th{
+	border: 1px solid #CCC;
+    text-align: center;
+    padding: 15px 0;
+}
+.order-detail-content-text{
+    display: block;
+    font-weight: 300;
+    line-height: 38px;
+    color: #6a6666;
+    font-size: 17px;
+}
+.order-table th{
+	background: #f5f5f5;
+	height: 50px;
+	margin: 10px 0;
+    border: 1px solid #e8e8e8;
+}
+.order-table-tr1{
+	background: #f5f5f5;
+	height: 50px;
+}
+.item-td-action{
+	color:red;
+	cursor: pointer;
+}
+.order-pay-p{
+	padding: 15px 18px;
+    font-size: 22px;
+    color: #333;
+    float: left;
+}
+.order-pay-p2{
+	padding: 15px 18px;
+    font-size: 22px;
+    color: #333;
+    float: right;
+}
+.order-pay-p2 span{
+	padding: 15px 18px;
+    font-size: 12px;
+    color: #333;
+}
+.order-pay-p2 span strong{
+	padding: 15px 18px;
+    font-size: 22px;
+    color: #ee5533;
+}
+.baike-detail-h2{
+	font: 30px/30px "Microsoft YaHei";
+}
+.baike-detail-dl{
+	overflow: hidden;
+    width: 830px;
+    display: inline-block;
+    zoom: 1;
+    vertical-align: top;
+    padding-bottom: 40px;
+}
+.baike-detail-dl dd{
+	float: left;
+    width: 410px;
+    margin: 15px 0 0;
+    font: 15px/20px "Microsoft YaHei";
+    padding: 0 3px 0 0;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+}
+.baike-detail-dl dd span{
+	color: #999;
+}
+.baike-detail-dl dd em{
+	font-style: normal;
+}
+.baike-detail-art{
+	width: 800px;
+}
+.baike-detail-art span{
+	font: 16px/24px "Microsoft YaHei";
+    text-align: center;
+    color: #FFF;
+    font-style: normal;
+    border-radius: 3px;
+    background: #9c3;
+    margin: 2px 5px 0 0;
+}
+.baike-detail-p{
+	font: 16px/26px "Microsoft YaHei";
+    padding-bottom: 20px;
+    border-bottom: 1px dashed #DDD;
+}
+.bgStyle{
+	-moz-background-size:100% 100%;
+	background-size:100% 100%;
+}
+.admin-body{
+	margin-top:100px;
+}

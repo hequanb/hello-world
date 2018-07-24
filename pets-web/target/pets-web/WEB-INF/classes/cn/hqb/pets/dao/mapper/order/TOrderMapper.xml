@@ -1,0 +1,305 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+
+<mapper namespace="cn.hqb.pets.dao.mapper.order.TOrderMapper">
+	<resultMap id="tOrderResultMap" type="tOrder">
+		<id column="id" property="id" jdbcType="BIGINT"/>
+		<result column="order_id" property="orderId" jdbcType="BIGINT"/>
+		<result column="payment" property="payment" jdbcType="VARCHAR"/>
+		<result column="payment_type" property="paymentType" jdbcType="INTEGER"/>
+		<result column="status" property="status" jdbcType="INTEGER"/>
+		<result column="shipping_code" property="shippingCode" jdbcType="VARCHAR"/>
+		<result column="created" property="created" jdbcType="TIMESTAMP"/>
+		<result column="updated" property="updated" jdbcType="TIMESTAMP"/>
+		<result column="paid" property="paid" jdbcType="TIMESTAMP"/>
+		<result column="consigned" property="consigned" jdbcType="TIMESTAMP"/>
+		<result column="end" property="end" jdbcType="TIMESTAMP"/>
+		<result column="closed" property="closed" jdbcType="TIMESTAMP"/>
+		<result column="user_id" property="userId" jdbcType="BIGINT"/>
+		<result column="buyer_message" property="buyerMessage" jdbcType="VARCHAR"/>
+		<result column="buyer_nick" property="buyerNick" jdbcType="VARCHAR"/>	
+		<result column="buyer_rate" property="buyerRate" jdbcType="VARCHAR"/>
+		<collection property="itemList" ofType="cn.hqb.pets.pojo.order.TOrderItem">
+			<result column="item_id" property="itemId" jdbcType="BIGINT"/>
+			<result column="count" property="count" jdbcType="BIGINT"/>
+			<result column="price" property="price" jdbcType="DECIMAL"/>
+			<result column="sub_total" property="subTotal" jdbcType="DECIMAL"/>
+			<result column="title" property="title" jdbcType="VARCHAR"/>
+			<result column="image" property="image" jdbcType="VARCHAR"/>
+		</collection>
+	</resultMap>
+	
+	<resultMap id="tAdminOrderResultMap" type="tOrder" extends="tOrderResultMap">
+		<result column="order_id" property="orderId" jdbcType="VARCHAR"/>
+	</resultMap>
+	
+	<resultMap id="tOrderVoResultMap" type="cn.hqb.pets.vo.order.TOrderVo">
+		<id column="id" property="id" jdbcType="BIGINT"/>
+		<result column="order_id" property="orderId" jdbcType="BIGINT"/>
+		<result column="payment" property="payment" jdbcType="VARCHAR"/>
+		<result column="payment_type" property="paymentType" jdbcType="INTEGER"/>
+		<result column="status" property="status" jdbcType="INTEGER"/>
+		<result column="shipping_code" property="shippingCode" jdbcType="VARCHAR"/>
+		<result column="created" property="created" jdbcType="TIMESTAMP"/>
+		<result column="updated" property="updated" jdbcType="TIMESTAMP"/>
+		<result column="paid" property="paid" jdbcType="TIMESTAMP"/>
+		<result column="consigned" property="consigned" jdbcType="TIMESTAMP"/>
+		<result column="end" property="end" jdbcType="TIMESTAMP"/>
+		<result column="closed" property="closed" jdbcType="TIMESTAMP"/>
+		<result column="user_id" property="userId" jdbcType="BIGINT"/>
+		<result column="buyer_message" property="buyerMessage" jdbcType="VARCHAR"/>
+		<result column="buyer_nick" property="buyerNick" jdbcType="VARCHAR"/>	
+		<result column="buyer_rate" property="buyerRate" jdbcType="VARCHAR"/>
+		<result column="receiver_name" property="receiverName" jdbcType="VARCHAR"/>
+		<result column="receiver_phone" property="receiverPhone" jdbcType="VARCHAR"/>
+		<result column="receiver_zip" property="receiverZip" jdbcType="VARCHAR"/>
+		<result column="receiver_address" property="receiverAddress" jdbcType="VARCHAR"/>
+		<collection property="list" ofType="cn.hqb.pets.pojo.order.TOrderItem">
+			<result column="item_id" property="itemId" jdbcType="BIGINT"/>
+			<result column="count" property="count" jdbcType="BIGINT"/>
+			<result column="price" property="price" jdbcType="DECIMAL"/>
+			<result column="sub_total" property="subTotal" jdbcType="DECIMAL"/>
+			<result column="title" property="title" jdbcType="VARCHAR"/>
+			<result column="image" property="image" jdbcType="VARCHAR"/>
+		</collection>
+	</resultMap>
+	
+	<sql id="BASE_COLUMN">
+		id, order_id, payment, payment_type, status, shipping_code, created,
+		updated, paid, consigned, end, closed, user_id, buyer_message, buyer_nick, buyer_rate 
+	</sql>
+	
+	<sql id="BASE_COLUMN_WITH_OITEM">
+		o.id, o.order_id, o.payment, o.payment_type, o.status, o.shipping_code, o.created,o.updated, 
+		o.paid, o.consigned, o.end, o.closed, o.user_id, o.buyer_message, o.buyer_nick, o.buyer_rate,
+		item.item_id, item.count, item.price, item.sub_total, item.title, item.image
+	</sql>
+	
+	<sql id="BASE_COLUMN_VO">
+		o.id, o.order_id, o.payment, o.payment_type, o.status, o.shipping_code, o.created,o.updated, 
+		o.paid, o.consigned, o.end, o.closed, o.user_id, o.buyer_message, o.buyer_nick, o.buyer_rate,
+		e.receiver_name, e.receiver_phone, e.receiver_zip, e.receiver_address, item.item_id, item.count,
+		item.price, item.sub_total, item.title, item.image
+	</sql>
+
+	<insert id="insertOrder" parameterType="tOrder" useGeneratedKeys="true" keyProperty="id">
+		insert into t_order
+		<trim prefix="(" suffix=")" suffixOverrides="," >
+				order_id,
+			<if test="payment != null" >
+				payment,
+			</if>
+			<if test="paymentType != null" >
+				payment_type,
+			</if>
+			<if test="status != null" >
+				status,
+			</if>
+			<if test="shippingCode != null" >
+				shipping_code,
+			</if>
+			<if test="userId != null" >
+				user_id,
+			</if>
+			<if test="buyerMessage != null" >
+				buyer_message,
+			</if>
+			<if test="buyerNick != null" >
+				buyer_nick,
+			</if>
+			<if test="buyerRate != null" >
+				buyer_rate,
+			</if>
+			created,
+			updated
+		</trim>
+		<trim prefix="values (" suffix=")" suffixOverrides="," >
+			UUID_SHORT(),
+			<if test="payment != null" >
+				#{payment, jdbcType = VARCHAR},
+			</if>
+			<if test="paymentType != null" >
+				#{paymentType, jdbcType = INTEGER},
+			</if>
+			<if test="status != null" >
+				#{status, jdbcType = INTEGER},
+			</if>
+			<if test="shippingCode != null" >
+				#{shippingCode, jdbcType = VARCHAR},
+			</if>
+			<if test="userId != null" >
+				#{userId, jdbcType = BIGINT},
+			</if>
+			<if test="buyerMessage != null" >
+				#{buyerMessage, jdbcType = VARCHAR},
+			</if>
+			<if test="buyerNick != null" >
+				#{buyerNick, jdbcType = VARCHAR},
+			</if>
+			<if test="buyerRate != null" >
+				#{buyerRate, jdbcType = VARCHAR},
+			</if>
+			SYSDATE(),
+			SYSDATE()
+		</trim>
+	</insert>
+	
+	<select id="selectOrderIdById" resultType="long">
+		select order_id from t_order
+		<where>
+			<if test="id != null">
+				id = #{id, jdbcType = BIGINT}
+			</if>
+		</where>
+	</select>
+	
+	<select id="getOrderByOrderId" resultMap="tOrderResultMap">
+		select
+			<include refid="BASE_COLUMN"></include>
+		from t_order
+		<where>
+			<if test="orderId != null">
+				order_id = #{orderId, jdbcType = BIGINT}			
+			</if>
+		</where>
+	</select>
+	
+	<select id="getOrderDetailByOrderId" resultMap="tOrderVoResultMap">
+		select
+			<include refid="BASE_COLUMN_VO"></include>
+		from t_order o
+		LEFT JOIN t_order_express e ON o.order_id = e.order_id
+		LEFT JOIN t_order_item item on o.order_id = item.order_id
+		<where>
+			<if test="orderId != null">
+				o.order_id = #{orderId, jdbcType = BIGINT}			
+			</if>
+		</where>
+	</select>
+	
+	<select id="getOrderItemCountByOrderId" resultType="long">
+		select count(*) from t_order_item where order_id = #{orderId ,jdbcType=BIGINT}
+	</select>
+	
+	<select id="getMyOrder" resultMap="tOrderResultMap">
+		select
+			<include refid="BASE_COLUMN_WITH_OITEM"></include>
+		from t_order o
+		LEFT JOIN t_user u on u.id = o.user_id
+		LEFT JOIN t_order_item item on o.order_id = item.order_id
+		<where>
+			<if test="userId != null">
+				u.id = #{userId, jdbcType = BIGINT}			
+			</if>
+		</where>
+		order by created desc
+	</select>
+	
+	<select id="getOrderIsPaying" resultMap="tOrderResultMap">
+		select
+			<include refid="BASE_COLUMN"></include>
+		from t_order 
+		<where>
+			<if test="orderId != null">
+				order_id = #{orderId, jdbcType = BIGINT}			
+			</if>
+			and payment_type = 1 and status = 1 
+		</where>
+	</select>
+	
+	<update id="updatePaid" parameterType="tOrder">
+		update t_order
+		<set>
+			<if test="status != null">
+				status = #{status, jdbcType = INTEGER},
+			</if>
+			updated = SYSDATE(),
+			paid = SYSDATE()
+		</set>
+		<where>
+			order_id = #{orderId, jdbcType = BIGINT}
+		</where>
+	</update>
+	
+	<select id="getCount" resultType="Integer" parameterType="tAdminOrderVo">
+  		select count(*) from t_order
+  		<where>
+  			<if test="orderId != null">
+  				and order_id like CONCAT(CONCAT('%', #{orderId, jdbcType = BIGINT}), '%')
+  			</if>
+  			
+  			<if test="paymentType != null">
+  				and payment_type = #{paymentType, jdbcType = INTEGER}
+  			</if>
+  			
+  			<if test= "status != null">
+  				and status = #{status, jdbcType = INTEGER}
+  			</if>
+  		</where>
+  	</select>
+  	
+  	<select id="getAllOrder" parameterType="tAdminOrderVo" resultMap="tAdminOrderResultMap">
+  		select
+  			<include refid="BASE_COLUMN"/>
+  		from
+  			t_order
+  		<where>
+  			<if test="orderId != null">
+  				and order_id like CONCAT(CONCAT('%', #{orderId, jdbcType = BIGINT}), '%')
+  			</if>
+  			
+  			<if test="paymentType != null">
+  				and payment_type = #{paymentType, jdbcType = INTEGER}
+  			</if>
+  			
+  			<if test= "status != null">
+  				and status = #{status, jdbcType = INTEGER}
+  			</if>
+  		</where>
+  		<if test="firstResult != null and limit != null">
+  			limit #{firstResult, jdbcType = INTEGER},#{limit, jdbcType = INTEGER}
+  		</if>
+  	</select>
+  	
+  	<update id="updateConsign" parameterType="tOrder">
+		update t_order
+		<set>
+			<if test="status != null">
+				status = #{status, jdbcType = INTEGER},
+			</if>
+			updated = SYSDATE(),
+			consigned = SYSDATE()
+		</set>
+		<where>
+			order_id = #{orderId, jdbcType = BIGINT}
+		</where>
+	</update>
+	
+	<update id="updateEnd" parameterType="tOrder">
+		update t_order
+		<set>
+			<if test="status != null">
+				status = #{status, jdbcType = INTEGER},
+			</if>
+			updated = SYSDATE(),
+			consigned = SYSDATE()
+		</set>
+		<where>
+			order_id = #{orderId, jdbcType = BIGINT}
+		</where>
+	</update>
+	
+	<update id="updateAccept" parameterType="tOrder">
+		update t_order
+		<set>
+			<if test="status != null">
+				status = #{status, jdbcType = INTEGER},
+			</if>
+			updated = SYSDATE(),
+		</set>
+		<where>
+			order_id = #{orderId, jdbcType = BIGINT}
+		</where>
+	</update>
+	
+</mapper>
