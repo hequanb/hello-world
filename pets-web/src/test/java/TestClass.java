@@ -89,7 +89,7 @@ public class TestClass {
             e.printStackTrace();
         }
 
-        service.shutdown();// 整个军队撤回！
+        service.shutdown(); 
     }
 
     
