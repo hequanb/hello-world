@@ -68,7 +68,7 @@ public class AdminController extends BaseController{
 	/**
 	 * @param response
 	 * @param itemPo
-	 * @return test
+	 * @return test2
 	 * @throws Exception
 	 * 编辑商品页面
 	 */
